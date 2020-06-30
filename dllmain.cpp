@@ -186,9 +186,16 @@ namespace ColdClear
         CC_HARD_DROP_ONLY
     };
 
+    public enum class CCSpawnRule
+    {
+        CC_ROW_19_OR_20,
+        CC_ROW_21_AND_FALL,
+    };
+
     public value struct CCOptions
     {
         CCMovementMode mode;
+        CCSpawnRule spawn_rule;
         bool use_hold;
         bool speculate;
         bool pcloop;
@@ -203,6 +210,7 @@ namespace ColdClear
             return CCOptions
             {
                 (CCMovementMode)options.mode,
+                (CCSpawnRule)options.spawn_rule,
                 options.use_hold,
                 options.speculate,
                 options.pcloop,
@@ -215,6 +223,7 @@ namespace ColdClear
         void ConvertToC(::CCOptions& options)
         {
             options.mode = (::CCMovementMode)mode;
+            options.spawn_rule = (::CCSpawnRule)spawn_rule;
             options.use_hold = use_hold;
             options.speculate = speculate;
             options.pcloop = pcloop;
